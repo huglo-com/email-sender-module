@@ -18,6 +18,8 @@ import {
  *
  * Grant is a cryptographically verifiable authorization of a user.
  * User can authorize modules to use other modules on their behalf.
+ * For more information, see the Huglo documentation:
+ * https://github.com/huglo-com/module-sdk/blob/main/docs/ai/HUGLO_SPECIFICATION.md
  *
  * In this example, we store the grants in a JSON file per grantId.
  * ============================================================================= */
