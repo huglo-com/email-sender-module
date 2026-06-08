@@ -19,6 +19,9 @@ import {
  * User can have multiple instances of the configuration. Each instance has an instanceId.
  *
  * In this example, we store the configuration in a JSON file per instanceId.
+ *
+ * Production: secrets such as SMTP credentials must not live in plain files on
+ * disk. Use a secure secret store or encrypted storage instead.
  * ============================================================================= */
 
 export class FileConfigStore implements ConfigStore {
