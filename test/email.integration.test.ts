@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach, vi } from "vitest";
+import { fileType, type ModuleManifest } from "@huglo/module-sdk";
 import { configStore } from "../src/services/config-store.js";
 import {
   createTestHarness,
@@ -137,6 +138,27 @@ describe("email:send integration", () => {
         contentType: "application/pdf",
       },
     ]);
+  });
+
+  it("publishes huglo:file in manifest types and scope input", async () => {
+    const res = await fetch(`${harness.endpoint}/manifest`);
+    expect(res.status).toBe(200);
+
+    const manifest = (await res.json()) as ModuleManifest;
+    const fileTypeEntry = manifest.types?.find((t) => t.id === fileType.id);
+    expect(fileTypeEntry).toBeDefined();
+    expect(fileTypeEntry?.schemaHash).toMatch(/^sha256-v1:/);
+    expect(fileTypeEntry?.display.label).toBe("file");
+
+    const scope = manifest.scopes.find((s) => s.name === "email:send");
+    expect(scope?.input).toMatchObject({
+      properties: {
+        attachments: {
+          type: "array",
+          items: { type: fileType.id },
+        },
+      },
+    });
   });
 
   it("returns dry-run preview without sending", async () => {

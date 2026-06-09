@@ -1,5 +1,6 @@
 import {
   Module,
+  fileType,
   generateKeyPair,
   signObject,
   InMemoryDirectoryClient,
@@ -78,6 +79,7 @@ export async function createTestHarness(): Promise<TestHarness> {
   });
 
   emailModule.config(emailConfigDefinition);
+  emailModule.registerType(fileType);
 
   emailModule.scope("email:send", {
     description: "Send an email to a recipient",

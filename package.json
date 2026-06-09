@@ -18,7 +18,7 @@
     "sonar:ci": "npm run test:coverage && npm run sonar"
   },
   "dependencies": {
-    "@huglo/module-sdk": "^1.1.0",
+    "@huglo/module-sdk": "^1.2.0",
     "dotenv": "^17.4.2",
     "nodemailer": "^8.0.10",
     "zod": "^4.4.3"

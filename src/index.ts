@@ -1,6 +1,6 @@
 // Email Sender - example Huglo module with managed config UI.
 
-import { Module, loadKeyPair } from "@huglo/module-sdk";
+import { Module, loadKeyPair, fileType } from "@huglo/module-sdk";
 import { grantStore } from "./services/grant-store.js";
 import { configStore } from "./services/config-store.js";
 
@@ -36,7 +36,9 @@ import {
   EmailResultSchema,
 } from "./lib/schemas.js";
 
-import { sendEmail } from "./scopes/email.send.js"; 
+import { sendEmail } from "./scopes/email.send.js";
+
+module.registerType(fileType);
 
 module.scope("email:send", {
   description: "Send an email to a recipient",

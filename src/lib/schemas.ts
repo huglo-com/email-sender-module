@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { FileSchema, type ConfigDefinition } from "@huglo/module-sdk";
+import { fileType, type ConfigDefinition } from "@huglo/module-sdk";
 import { formatMailbox, parseMailbox } from "./mailbox.js";
 
 /* =============================================================================
@@ -82,7 +82,7 @@ export const EmailInputSchema = z.object({
   subject: z.string().min(1).optional(),
   recipient: RecipientInputSchema,
   body: z.string().optional(),
-  attachments: z.array(FileSchema).optional(),
+  attachments: z.array(fileType.schema).optional(),
   context: FlowNodeContextSchema,
 });
 
